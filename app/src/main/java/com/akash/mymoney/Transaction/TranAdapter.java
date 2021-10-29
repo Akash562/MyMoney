@@ -89,13 +89,14 @@ public class TranAdapter extends RecyclerView.Adapter<TranAdapter.ViewHolder> {
         }
 
         int p = Integer.parseInt(modal.getAmount());
-        int r = Integer.parseInt(modal.getRate());
+        Float r = Float.parseFloat(modal.getRate());
         int t=1;
 
-        int odi = (p*r*t)/100;
-        int perday = odi/30;
+        Float odi = (p*r*t)/100;
 
-        int tday=Integer.parseInt(holder.Days.getText().toString());
+        int perday = Integer.parseInt(String.valueOf(Math.round(odi/30)));
+
+        int tday = Integer.parseInt(holder.Days.getText().toString());
         int TAMT = perday*tday;
 
         holder.TAmount.setText(String.valueOf(TAMT));

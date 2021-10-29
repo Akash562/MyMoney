@@ -31,8 +31,10 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         init();
     }
+
     public void onRestart() {
         super.onRestart();
         init();
     }
+
 }
