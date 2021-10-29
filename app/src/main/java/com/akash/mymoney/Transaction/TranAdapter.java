@@ -96,7 +96,7 @@ public class TranAdapter extends RecyclerView.Adapter<TranAdapter.ViewHolder> {
 
         int perday = Integer.parseInt(String.valueOf(Math.round(odi/30)));
 
-        int tday = Integer.parseInt(holder.Days.getText().toString());
+        int tday = Integer.parseInt(holder.TDays.getText().toString());
         int TAMT = perday*tday;
 
         holder.TAmount.setText(String.valueOf(TAMT));
