@@ -67,20 +67,20 @@ public class TranAdapter extends RecyclerView.Adapter<TranAdapter.ViewHolder> {
         holder.GDate.setText(modal.getGDate());
 
         try {
-            // calculate Days
+            // calculate TDays
             Date date1 = formatter.parse(modal.getGDate());
             Date date2 = formatter.parse(TodayDate);
             long diff = date2.getTime() - date1.getTime();
-            holder.Days.setText(String.valueOf(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS)));
+            holder.TDays.setText(String.valueOf(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS)));
 
-            // Calculate Month
+            // Calculate Month/year/days
             Instant instant = date1.toInstant();
             LocalDate localDatestart = instant.atZone(defaultZoneId).toLocalDate();
             Instant instant1 = date2.toInstant();
             LocalDate localDateend = instant1.atZone(defaultZoneId).toLocalDate().plusDays(1);
             Period pd = Period.between(localDatestart, localDateend);
 
-           // holder.Days.setText(String.valueOf(pd.getDays()));
+            holder.Days.setText(String.valueOf(pd.getDays()));
             holder.Month.setText(String.valueOf(pd.getMonths()));
             holder.Year.setText(String.valueOf(pd.getYears()));
 
@@ -112,7 +112,7 @@ public class TranAdapter extends RecyclerView.Adapter<TranAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         // creating variables for our text views.
-        private TextView Name, Rate, Amount, GDate, Days, Month, Year, TAmount;
+        private TextView Name, Rate, Amount, GDate, Days, Month, Year, TAmount, TDays;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -120,6 +120,7 @@ public class TranAdapter extends RecyclerView.Adapter<TranAdapter.ViewHolder> {
             Rate = itemView.findViewById(R.id.Rate);
             Amount = itemView.findViewById(R.id.Amount);
             GDate = itemView.findViewById(R.id.GDate);
+            TDays =itemView.findViewById(R.id.TDay);
             Days=itemView.findViewById(R.id.Day);
             Month =itemView.findViewById(R.id.Month);
             Year=itemView.findViewById(R.id.Year);
