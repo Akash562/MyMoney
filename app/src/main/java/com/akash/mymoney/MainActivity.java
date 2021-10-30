@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, Transaction.class));
                 finish();
             }
-        }, 4000);
+        }, 1500);
     }
 
     public void onResume() {
@@ -36,5 +36,6 @@ public class MainActivity extends AppCompatActivity {
         super.onRestart();
         init();
     }
+
 
 }

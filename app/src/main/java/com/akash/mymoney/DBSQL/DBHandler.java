@@ -45,34 +45,29 @@ public class DBHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void addNewUser(String Name, String rate, String Amount, String time){
-
+    public void addNewUser(String Name, String rate, String Amount, String time) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-
         values.put(NAME_COL, Name);
         values.put(RATE_COL, rate);
         values.put(AMOUNT_COL, Amount);
         values.put(TIME_COL, time);
-
         db.insert(TABLE_NAME, null, values);
         db.close();
     }
 
-    // we have created a new method for reading all the courses.
     public ArrayList<Tran_Model> readCourses() {
-
         SQLiteDatabase db = this.getReadableDatabase();
         // on below line we are creating a cursor with query to read data from database.
         Cursor cursorCourses = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
         // on below line we are creating a new array list.
         ArrayList<Tran_Model> courseModalArrayList = new ArrayList<>();
-
         // moving our cursor to first position.
         if (cursorCourses.moveToFirst()) {
             do {
                 // on below line we are adding the data from cursor to our array list.
                 courseModalArrayList.add(new Tran_Model(
+                        cursorCourses.getInt(0),
                         cursorCourses.getString(1),
                         cursorCourses.getString(2),
                         cursorCourses.getString(3),
@@ -80,9 +75,29 @@ public class DBHandler extends SQLiteOpenHelper {
             } while (cursorCourses.moveToNext());
             // moving our cursor to next.
         }
-
         cursorCourses.close();
         return courseModalArrayList;
+    }
+
+    public void delete_User(String id) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        database.execSQL("DELETE FROM " + TABLE_NAME + " WHERE " + ID_COL + "= '" + id + "'");
+        database.close();
+    }
+
+    public void Update_User(String id,String Name,String rate,String Amount,String time){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(NAME_COL, Name);
+        values.put(RATE_COL, rate);
+        values.put(AMOUNT_COL, Amount);
+        values.put(TIME_COL, time);
+        db.update(TABLE_NAME, values, ID_COL+"=?", new String[]{id});
+        db.close();
+    }
+
+    public String getDbName(){
+        return DB_NAME;
     }
 
 }

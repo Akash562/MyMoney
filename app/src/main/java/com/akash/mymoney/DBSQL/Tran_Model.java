@@ -11,45 +11,37 @@ public class Tran_Model {
     public String getName() {
         return Name;
     }
-
     public void setName(String name) {
         Name = name;
     }
-
     public String getRate() {
         return Rate;
     }
-
     public void setRate(String rate) {
         Rate = rate;
     }
-
     public String getAmount() {
         return Amount;
     }
-
     public void setAmount(String amount) {
         Amount = amount;
     }
-
     public String getGDate() {
         return GDate;
     }
-
     public void setGDate(String GDate) {
         this.GDate = GDate;
     }
-
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
 
     // constructor
-    public Tran_Model(String Name, String Rate, String Amount, String GDate) {
+    public Tran_Model(int id,String Name, String Rate, String Amount, String GDate) {
+        this.id = id;
         this.Name = Name;
         this.Rate = Rate;
         this.Amount = Amount;
