@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, Transaction.class));
                 finish();
             }
-        }, 1500);
+        }, 1000);
     }
 
     public void onResume() {
